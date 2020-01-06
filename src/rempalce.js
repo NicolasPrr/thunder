@@ -1,3 +1,7 @@
+//Por si se me llega a borrar algo de app.js, aqui esta la aplicacion funcional
+//Es necesario revisar sms_rc si se quiere enviar mensaje...
+
+
 import React, { Component } from 'react';
 import { StatusBar, View, StyleSheet } from 'react-native';
 import { StyleProvider, Container, Content, Header, Left, Right, Icon, Body, Button, Title, Text, Footer } from 'native-base';
