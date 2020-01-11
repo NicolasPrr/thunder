@@ -7,7 +7,7 @@ import { StatusBar, View, StyleSheet } from 'react-native';
 import { StyleProvider, Container, Content, Header, Left, Right, Icon, Body, Button, Title, Text, Footer } from 'native-base';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import theme from './theme/index';
+import theme from '../theme/index';
 
 export default class ButtonExample extends Component {
   constructor(props) {

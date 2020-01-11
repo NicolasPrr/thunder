@@ -5,7 +5,7 @@ const platform = Platform.OS;
 const customCommonColor = {
     ...commonColor,
     // toolbarDefaultBg: '#FF0000',
-    brandPrimary: platform === "ios" ? '#144EFC' : '#144EFC',
+    brandPrimary: platform === "ios" ? '#A88B48' : '#A88B48',
     get buttonPrimaryBg() {
         return this.brandPrimary
     }
