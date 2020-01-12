@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import {
   Button,
   Container,
@@ -10,7 +12,8 @@ import {
   Body,
   Item,
   Input,
-  Form
+  Form,
+  Toast
 } from "native-base";
 import { StyleSheet } from "react-native";
 import { AppLoading } from "expo";
@@ -18,7 +21,10 @@ import { FontAwesome, IonIcons, Foundation } from "@expo/vector-icons";
 
 import HeaderBar from "../components/HeaderBar";
 import theme from "../theme/index";
-export default class HomeScreen extends React.Component {
+
+import { change } from "../redux/actions/index";
+
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loading: true, tel: "", emergency: "" };
@@ -29,20 +35,26 @@ export default class HomeScreen extends React.Component {
       Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
     });
     this.setState({ loading: false });
+    this.setState({
+      tel: this.props.user.tel,
+      emergency: this.props.user.emer
+    });
   }
   setNativeProps = nativeProps => {
     this._root.setNativeProps(nativeProps);
   };
-  changeName(e, f) {
-    const input = e;
-    // console.log(input);
-    console.log(e);
-    console.log(e);
-    // this.setState({ name: input });
-  }
   getData = () => {
     console.log(this.state.emergency);
-    console.log(this.state.tel);
+    this.props.change({
+      tel: this.state.tel,
+      emer: this.state.emergency
+    });
+    Toast.show({
+      text: "Se ha cambiado los numeros con exito.",
+      type: "success",
+      buttonText: "OK"
+    });
+    this.props.navigation.navigate('Home')
   };
   render() {
     if (this.state.loading) {
@@ -60,25 +72,26 @@ export default class HomeScreen extends React.Component {
                 <CardItem>
                   <CardItem>
                     <Body>
-
-                    <Item inlineLabel>
-                      <Foundation name="telephone" size={20} />
-                      <Input
-                        placeholder="Numero de telefono"
-                        ref={e => (this._textInput = e)}
-                        onChangeText={e => this.setState({ tel: e })}
-                        // onChangeText={e => console.log(e)}
-                      />
-                    </Item>
-                    <Item inlineLabel>
-                      <FontAwesome name="warning" size={20} />
-                      <Input
-                        placeholder="Numero de emergencia"
-                        ref={e => (this._textInput = e)}
-                        onChangeText={e => this.setState({ emergency: e })}
-                        // onChangeText={e => console.log(e)}
-                      />
-                    </Item>
+                      <Item inlineLabel>
+                        <Foundation name="telephone" size={20} />
+                        <Input
+                          placeholder="Numero de telefono"
+                          ref={e => (this._textInput = e)}
+                          onChangeText={e => this.setState({ tel: e })}
+                          value={this.state.tel}
+                          // onChangeText={e => console.log(e)}
+                        />
+                      </Item>
+                      <Item inlineLabel>
+                        <FontAwesome name="warning" size={20} />
+                        <Input
+                          placeholder="Numero de emergencia"
+                          ref={e => (this._textInput = e)}
+                          onChangeText={e => this.setState({ emergency: e })}
+                          // onChangeText={e => console.log(e)}
+                          value={this.state.emergency}
+                        />
+                      </Item>
                     </Body>
                   </CardItem>
                 </CardItem>
@@ -117,3 +130,11 @@ const styles = StyleSheet.create({
     marginLeft: "60%"
   }
 });
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ change: change }, dispatch);
+};
+const mapStateToProps = state => ({
+  user: state.user
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -8,7 +8,7 @@ export default class HomeScreen extends React.Component {
       <Container>
         <StatusBar hidden/>
         <HeaderBar navigation = {this.props.navigation}/>
-        <Text>HomeScrsseen </Text>
+        <Text> this is a test </Text>
       </Container>
     );
   }

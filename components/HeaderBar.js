@@ -12,11 +12,15 @@ import {
   Text,
   Thumbnail
 } from "native-base";
+
+import {connect} from 'react-redux'
 import FAIcon from "react-native-vector-icons/FontAwesome";
 
-export default class MenuButton extends React.Component {
+
+class MenuButton extends React.Component {
   render() {
     let navigation = this.props.navigation;
+    const user = this.props.user
     return (
       <Header style={styles.header}>
         <Left style={{ flexDirection: "row" }}>
@@ -25,8 +29,6 @@ export default class MenuButton extends React.Component {
           </Button>
         </Left>
         <Body>
-          {/* <Text style={styles.text}>ALARMAS THUNDER</Text>
-           */}
           <Thumbnail
             square
             source={require("../resources/thunder.png")}
@@ -37,12 +39,20 @@ export default class MenuButton extends React.Component {
           <FAIcon
             name="car"
             style={{ color: "#A88B48", fontSize: 25, right: 20 }}
+            onPress={()=> console.log(user)}
           />
+          {/* <Text>
+            {user.tel}
+          </Text> */}
         </Right>
       </Header>
     );
   }
 }
+const mapStateToProps = state => ({
+  user: state.user
+})
+export default connect(mapStateToProps,null)(MenuButton)
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#3a455c",

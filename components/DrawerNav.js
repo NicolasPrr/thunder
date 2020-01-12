@@ -2,46 +2,45 @@ import React, { Component } from "react";
 import { Platform, Dimensions, FlatList } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
+import { connect } from "react-redux";
 
-import { Container, Header, Content, ListItem, Left, Text} from "native-base";
+import { Container, Header, Content, ListItem, Left, Text } from "native-base";
 import HomeScreen from "../screens/HomeScreen";
 import Register from "../screens/Register";
 import NavigationScreen from "../screens/NavigationButtons";
-
-
-const CustomDrawerContentComponent = props => {
-  return (
-    <Container>
-      <Header style={{ backgroundColor: "#6A7EA8", height: 90 }}>
-        <Left style = {{flex: 1, alignItems: 'center'}}>
-          <Text style = {{color:'white', fontStyle: 'italic'}}>
-            This is a testss
-          </Text>
-          <Text style = {{color:  'white', fontStyle: 'italic'}}>
-            This is a testss
-          </Text>
-        </Left>
-
-      </Header>
-      <Content>
-        <FlatList data={["Home", "Register","NavigationScreen"]} 
-        style = {{}}
-        renderItem = {
-          ({item}) => (
-              <ListItem  onPress={()=> props.navigation.navigate(item)} >
-                <Text> {item}</Text>
-              </ListItem>
-          )
-        }
-        />
-      </Content>
-    </Container>
-  );
-};
+import CustomDrawerContentComponent from './customDrawer'
+// const CustomDrawerContentComponent = props => {
+//   console.log("PROPS : ",props.user )
+//   return (
+//     <Container>
+//       <Header style={{ backgroundColor: "#6A7EA8", height: 90 }}>
+//         <Left style={{ flex: 1, alignItems: "center" }}>
+//           <Text style={{ color: "white", fontStyle: "italic" }}>
+//             This is a testss
+//           </Text>
+//           <Text style={{ color: "white", fontStyle: "italic" }}>
+//             This is a testss
+//           </Text>
+//         </Left>
+//       </Header>
+//       <Content>
+//         <FlatList
+//           data={["Home", "Register", "NavigationScreen"]}
+//           style={{}}
+//           renderItem={({ item }) => (
+//             <ListItem onPress={() => props.navigation.navigate(item)}>
+//               <Text> {item}</Text>
+//             </ListItem>
+//           )}
+//         />
+//       </Content>
+//     </Container>
+//   );
+// };
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: { screen: NavigationScreen },
     Register: { screen: Register },
     NavigationScreen: { screen: NavigationScreen }
   },
@@ -54,4 +53,8 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 
-export default createAppContainer(DrawerNavigator);
+const mapStateToProps = state => ({
+  user: state.user
+});
+// export default createAppContainer(DrawerNavigator);
+export default  (createAppContainer(DrawerNavigator));
