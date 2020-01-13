@@ -5,7 +5,7 @@ const initData = {
 };
 
 export default function(state = initData, action) {
-  console.log("action: ", action);
+  // console.log("\nSTATEUSER: ¨*************************\n", state);
   switch (action.type) {
     case "change":
       return {

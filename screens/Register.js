@@ -44,7 +44,6 @@ class Register extends React.Component {
     this._root.setNativeProps(nativeProps);
   };
   getData = () => {
-    console.log(this.state.emergency);
     this.props.change({
       tel: this.state.tel,
       emer: this.state.emergency

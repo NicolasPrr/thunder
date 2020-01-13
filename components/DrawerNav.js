@@ -7,42 +7,17 @@ import { connect } from "react-redux";
 import { Container, Header, Content, ListItem, Left, Text } from "native-base";
 import HomeScreen from "../screens/HomeScreen";
 import Register from "../screens/Register";
+import AddGPS from "../screens/AddGPS";
 import NavigationScreen from "../screens/NavigationButtons";
+import ChangePassword from "../screens/ChangePassword";
 import CustomDrawerContentComponent from './customDrawer'
-// const CustomDrawerContentComponent = props => {
-//   console.log("PROPS : ",props.user )
-//   return (
-//     <Container>
-//       <Header style={{ backgroundColor: "#6A7EA8", height: 90 }}>
-//         <Left style={{ flex: 1, alignItems: "center" }}>
-//           <Text style={{ color: "white", fontStyle: "italic" }}>
-//             This is a testss
-//           </Text>
-//           <Text style={{ color: "white", fontStyle: "italic" }}>
-//             This is a testss
-//           </Text>
-//         </Left>
-//       </Header>
-//       <Content>
-//         <FlatList
-//           data={["Home", "Register", "NavigationScreen"]}
-//           style={{}}
-//           renderItem={({ item }) => (
-//             <ListItem onPress={() => props.navigation.navigate(item)}>
-//               <Text> {item}</Text>
-//             </ListItem>
-//           )}
-//         />
-//       </Content>
-//     </Container>
-//   );
-// };
 
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: { screen: NavigationScreen },
     Register: { screen: Register },
-    NavigationScreen: { screen: NavigationScreen }
+    AddGPS: { screen: AddGPS },
+    ChangePassword: { screen: ChangePassword}
   },
   {
     drawerPosition: "left",
@@ -53,8 +28,4 @@ const DrawerNavigator = createDrawerNavigator(
   }
 );
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-// export default createAppContainer(DrawerNavigator);
 export default  (createAppContainer(DrawerNavigator));
