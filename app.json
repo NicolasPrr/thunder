@@ -2,6 +2,7 @@
   "expo": {
     "name": "Thunder",
     "slug": "my-app",
+    "version": "1.0.0",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -9,9 +10,9 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/icon.png",
+
+    "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -24,7 +25,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.niparrara.thunder"
+    },
+    "android": {
+      "package": "com.niparrara.thunder"
     }
   }
 }

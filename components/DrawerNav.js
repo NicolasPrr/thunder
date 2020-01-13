@@ -11,13 +11,15 @@ import AddGPS from "../screens/AddGPS";
 import NavigationScreen from "../screens/NavigationButtons";
 import ChangePassword from "../screens/ChangePassword";
 import CustomDrawerContentComponent from './customDrawer'
+import Velocity from "../screens/Velocity";
 
 const DrawerNavigator = createDrawerNavigator(
   {
     Home: { screen: NavigationScreen },
     Register: { screen: Register },
     AddGPS: { screen: AddGPS },
-    ChangePassword: { screen: ChangePassword}
+    ChangePassword: { screen: ChangePassword},
+    Velocity: { screen: Velocity}
   },
   {
     drawerPosition: "left",

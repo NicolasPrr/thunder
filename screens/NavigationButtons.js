@@ -26,11 +26,11 @@ const bodies = [`${ones}ARM`, `${ones}DSM`,
 
 ];
 
-const RowButton = ({ icon_l, icon_r, name_l, name_r,body_1,body_2, number }) => {
+const RowButton = ({ icon_l, icon_r, name_l, name_r,body_1,body_2, number, navigation }) => {
   return (
     <View style={style.content}>
       <Button primary block style={style.button}
-        onPress={ () => sendSMS(number,body_1) }
+        onPress={ () => name_l !== "Alerta de velocidad"? sendSMS(number,body_1) : navigation.navigate('Velocity')}
         >
         <Icon name={icon_l} 
         />
@@ -77,7 +77,8 @@ const OneButton = ({ icon_l, name_l, number,body ,navigation }) => {
       return <AppLoading />;
     }
     const index = this.props.index
-    const numberGps = index !== null ? this.props.gps.gps[index.index].number : 'N.A'
+    console.log(index)
+    const numberGps = index.index !== null ? this.props.gps.gps[index.index].number : 'N.A'
     return (
       <StyleProvider style={theme()}>
         <Container style={{ backgroundColor: "#f5f5f5" }}>
@@ -118,6 +119,7 @@ const OneButton = ({ icon_l, name_l, number,body ,navigation }) => {
               body_1={bodies[6]}
               body_2={bodies[7]}
               number ={numberGps}
+              navigation= {this.props.navigation}
               />
             <OneButton icon_l="ios-key" name_l="Cambiar  contraseña" body={bodies[8]} 
               number ={numberGps} navigation= {this.props.navigation}
@@ -132,7 +134,8 @@ const style = StyleSheet.create({
   button: {
     width: WIDTH * 0.36,
     height: HEIGHT * 0.19,
-    flexDirection: "column"
+    flexDirection: "column",
+    justifyContent: 'center'
   },
   content: {
     flexDirection: "row",

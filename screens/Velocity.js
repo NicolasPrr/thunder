@@ -21,23 +21,18 @@ import { StyleSheet } from "react-native";
 import { AppLoading } from "expo";
 import { FontAwesome, IonIcons, Foundation } from "@expo/vector-icons";
 
-import HeaderBar from "../components/HeaderBar";
-
-import theme from "../theme/index";
 import {sendSMS} from '../components/sms_rc'
 
-import { add, reset } from "../redux/actions/index";
-const ones = "111111";
 
 class ChangePssword extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  pass: "" };
+    this.state = {  vel: "" };
   }
   getData = () => {
     const index = this.props.index
     const numberGps = index.index !== null ? this.props.gps.gps[index.index].number : 'N.A'
-    sendSMS(numberGps, `111111PSW${this.state.pass}`)
+    sendSMS(numberGps, `111111SPD:${this.state.vel}`)
     this.props.navigation.navigate("Home");
   };
   render() {
@@ -47,18 +42,18 @@ class ChangePssword extends React.Component {
           <Card bordered>
             <Form>
               <CardItem hedaer bordered>
-                <Text>Cambio de contraseña</Text>
+                <Text>Limite de velocidad en Km/h</Text>
               </CardItem>
               <CardItem>
                 <CardItem>
                   <Body>
                     <Item inlineLabel>
-                      <FontAwesome name="keyboard-o" size={20} />
+                      <FontAwesome name="tachometer" size={20} />
                       <Input
-                        placeholder="Contraseña nueva"
+                        placeholder=""
                         ref={e => (this._textInput = e)}
-                        onChangeText={e => this.setState({ pass: e })}
-                        value={this.state.pass}
+                        onChangeText={e => this.setState({ vel: e })}
+                        value={this.state.vel}
                       />
                     </Item>
                   </Body>
@@ -85,7 +80,7 @@ class ChangePssword extends React.Component {
                     success
                     onPress={this.getData}
                   >
-                    <Text>Cambiar contraseña</Text>
+                    <Text>Establecer alarma</Text>
                   </Button>
                 </Right>
               </CardItem>
